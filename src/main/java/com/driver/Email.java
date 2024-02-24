@@ -19,6 +19,31 @@ public class Email {
     }
 
     public void changePassword(String oldPassword, String newPassword){
+        if(password.equals(oldPassword)){
+            int count= newPassword.length();
+            int flagU=0;
+            int flagL=0;
+            int flagD=0;
+            int flagS=0;
+            for(int i=0;i<count;i++){
+                char ch=newPassword.charAt(i);
+                if(Character.isUpperCase(ch)){
+                    flagU=1;
+                }
+                if(Character.isLowerCase(ch)){
+                    flagL=1;
+                }
+                if(Character.isDigit(ch)){
+                    flagD=1;
+                }
+                if(!Character.isDigit(ch)&&!Character.isAlphabetic(ch)){
+                    flagS=1;
+                }
+            }
+            if(count>=8 && flagU==1 && flagL==1 && flagD==1 && flagS==1){
+                password=newPassword;
+            }
+        }
         //Change password only if the oldPassword is equal to current password and the new password meets all of the following:
         // 1. It contains at least 8 characters
         // 2. It contains at least one uppercase letter
